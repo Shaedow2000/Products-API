@@ -1,17 +1,6 @@
-import type { Response, Request } from "express";
+import type { Response } from "express";
 import { ProductModel } from "../Model/product.ts";
-
-type methods = 'GET' | 'DELETE' | 'POST' | 'PATCH';
-
-const response = ( status: number, method: methods, data: object ): object => {
-  return {
-    'status': status,
-    'method': method,
-    'data': {
-      'product': data
-    }
-  }
-}
+import { response } from "../Helpers/methods.ts";
 
 const GETAll = async ( res: Response ): Promise< Response > => {
   const data: object = await ProductModel.find( {}, { '__v': false } );
