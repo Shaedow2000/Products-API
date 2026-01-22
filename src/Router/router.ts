@@ -1,4 +1,5 @@
 import { Router } from "express";
+import type { Request, Response } from "express";
 
 import { GETAll, GET, DELETE, POST, PATCH } from "./methods.ts";
 
@@ -6,7 +7,9 @@ const router: Router = Router()
 
 // Get All route
 router.route( '/api/products' )
-  .get( (): void => {} )
+  .get( ( _req: Request, res: Response ): void => {
+    GETAll( res )
+  } )
 
 // Post route 
 router.route( '/api/product' )
