@@ -1,0 +1,26 @@
+{
+  "name": "products-api",
+  "version": "1.0.0",
+  "description": "Simple Type safe products api.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shaedow2000/Products-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Shaedow2000/Products-API/issues"
+  },
+  "homepage": "https://github.com/Shaedow2000/Products-API#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
