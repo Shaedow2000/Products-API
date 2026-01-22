@@ -16,7 +16,7 @@
   "keywords": [ "Products", "Product", "API", "api", "ProductsAPI", "Type safe", "types", "typescript", "node", "nodejs", "ts-node" ],
   "author": "Amir Shaedow2000",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Shaedow2000/Products-API/issues"
   },
