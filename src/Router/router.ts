@@ -1,5 +1,7 @@
 import { Router } from "express";
 
+import { GETAll, GET, DELETE, POST, PATCH } from "./methods.ts";
+
 const router: Router = Router()
 
 // Get All route
