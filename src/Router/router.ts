@@ -13,7 +13,9 @@ router.route( '/api/products' )
 
 // Post route 
 router.route( '/api/product' )
-  .post( (): void => {} )
+  .post( ( req: Request, res: Response ): void => {
+    POST( req, res );
+  } )
 
 // Get Delete and Patch by title of the product
 router.route( '/api/product/:title' )

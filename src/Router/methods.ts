@@ -1,4 +1,4 @@
-import type { Response } from "express";
+import type { Request, Response } from "express";
 import { ProductModel } from "../Model/product.ts";
 import { response } from "../Helpers/methods.ts";
 
@@ -7,7 +7,7 @@ const GETAll = async ( res: Response ): Promise< Response > => {
 
   console.log( `[ GET ]|=> Fetched all data;` );
 
-  return res.status( 200 ).json( response( 200, 'GET', data ) )
+  return res.status( 200 ).json( response( 200, 'GET', { 'products': data } ) );
 }
 
 const GET = async ( res: Response, title: string ): Promise< Response > => {
@@ -25,7 +25,7 @@ const GET = async ( res: Response, title: string ): Promise< Response > => {
     code = 200;
   }
 
-  return res.status( code ).json( response( code, 'GET', data ) );
+  return res.status( code ).json( response( code, 'GET', { 'product': data } ) );
 }
 
 const DELETE = async ( res: Response, title: string ): Promise< Response > => {
@@ -43,10 +43,24 @@ const DELETE = async ( res: Response, title: string ): Promise< Response > => {
     code = 200;
   }
 
-  return res.status( code ).json( response( code, 'DELETE', [] ) );
+  return res.status( code ).json( response( code, 'DELETE', { 'product': [] } ) );
 }
 
-const POST = async ( res: Response ): Promise< void > => {}
+const POST = async ( req: Request, res: Response ): Promise< Response > => {
+  try {
+    const newData = req.body;
+  
+    const newProduct = new ProductModel( newData );
+    await newProduct.save();
+
+    return res.status( 201 ).json( response( 201, 'POST', newProduct ) );
+
+  } catch ( err: any | unknown ) {
+    console.log( `[ ERROR ]|=> ${ err.message }` );
+
+    return res.status( 400 ).json( response( 400, 'POST', { 'error': err.message } ) );
+  } 
+}
 
 const PATCH = async ( res: Response ): Promise< void > => {}
 

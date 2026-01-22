@@ -4,9 +4,7 @@ const response = ( status: number, method: methods, data: object ): object => {
   return {
     'status': status,
     'method': method,
-    'data': {
-      'product': data
-    }
+    data 
   }
 }
 
