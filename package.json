@@ -4,14 +4,17 @@
   "description": "Simple Type safe products api.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/main.ts",
+    "lint": "eslint",
+    "fix": "eslint --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Shaedow2000/Products-API.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [ "Products", "Product", "API", "api", "ProductsAPI", "Type safe", "types", "typescript", "node", "nodejs", "ts-node" ],
+  "author": "Amir Shaedow2000",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
