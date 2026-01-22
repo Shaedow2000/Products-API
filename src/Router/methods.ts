@@ -62,7 +62,24 @@ const POST = async ( req: Request, res: Response ): Promise< Response > => {
   } 
 }
 
-const PATCH = async ( res: Response ): Promise< void > => {}
+const PATCH = async ( res: Response, title: string, data: object ): Promise< Response > => {
+  const _updatedProduct = await ProductModel.updateOne( { title }, { $set: data } );
+  const prod = await ProductModel.find( { title }, { '__v': false } );
+
+  let code: number;
+
+  if ( prod.length === 0 ) {
+    console.log( `[ PATCH ]|=> Data with title: { ${ title } } was not found;` );
+
+    code = 404;
+  } else {
+    console.log( `[ PATCH ]|=> Updated data with title: { ${ title } };` );
+
+    code = 200;
+  }
+
+  return res.status( code ).json( response( code, 'PATCH', { 'product': prod } ) );
+}
 
 export {
   GETAll,
