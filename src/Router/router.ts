@@ -17,7 +17,10 @@ router.route( '/api/product' )
 
 // Get Delete and Patch by title of the product
 router.route( '/api/product/:title' )
-  .get( (): void => {} )
+  .get( ( req: Request, res: Response ): void => {
+    const title: string = req.params.title.toString();
+    GET( res, title );
+  } )
   .delete( (): void => {} )
   .patch( (): void => {} )
 

@@ -10,7 +10,23 @@ const GETAll = async ( res: Response ): Promise< Response > => {
   return res.status( 200 ).json( response( 200, 'GET', data ) )
 }
 
-const GET = async ( res: Response, _title: string ): Promise< void > => {}
+const GET = async ( res: Response, title: string ): Promise< Response > => {
+  const data = await ProductModel.find( { title }, { '__v': false } );
+
+  let code: number;
+
+  if ( data.length === 0 ) {
+    console.log( `[ GET ]|=> Data with title: { ${ title } } was not found;` ); 
+    
+    code = 404;
+  } else {
+    console.log( `[ GET ]|=> Fetched data with title: { ${ title } };` );
+    
+    code = 200;
+  }
+
+  return res.status( code ).json( response( code, 'GET', data ) );
+}
 
 const DELETE = async ( res: Response, _title: string ): Promise< void > => {}
 
