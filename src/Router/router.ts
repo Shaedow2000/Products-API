@@ -21,7 +21,10 @@ router.route( '/api/product/:title' )
     const title: string = req.params.title.toString();
     GET( res, title );
   } )
-  .delete( (): void => {} )
+  .delete( ( req: Request, res: Response ): void => {
+    const title: string = req.params.title.toString();
+    DELETE( res, title )
+  } )
   .patch( (): void => {} )
 
 export { router }

@@ -28,7 +28,23 @@ const GET = async ( res: Response, title: string ): Promise< Response > => {
   return res.status( code ).json( response( code, 'GET', data ) );
 }
 
-const DELETE = async ( res: Response, _title: string ): Promise< void > => {}
+const DELETE = async ( res: Response, title: string ): Promise< Response > => {
+  const deleted = await ProductModel.deleteOne( { title } );
+
+  let code: number;
+
+  if ( deleted.deletedCount === 0 ) {
+    console.log( `[ DELETE ]|=> Data with title: { ${ title } } was not found;` );
+
+    code = 404;
+  } else {
+    console.log( `[ DELETE ]|=> Deleted data with title: { ${ title } };` );
+    
+    code = 200;
+  }
+
+  return res.status( code ).json( response( code, 'DELETE', [] ) );
+}
 
 const POST = async ( res: Response ): Promise< void > => {}
 
