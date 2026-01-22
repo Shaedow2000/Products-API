@@ -12,6 +12,7 @@ import { router } from './Router/router.ts';
 const app: Express = express();
 
 // Middlewares
+app.use( express.json() );
 app.use( cors() );
 app.use( bodyParser.json() );
 app.use( router );
