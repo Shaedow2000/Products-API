@@ -16,6 +16,8 @@ const response = ( status: number, method: methods, data: object ): object => {
 const GETAll = async ( res: Response ): Promise< Response > => {
   const data: object = await ProductModel.find( {}, { '__v': false } );
 
+  console.log( `[ GET ]|=> Fetched all data;` );
+
   return res.status( 200 ).json( response( 200, 'GET', data ) )
 }
 
