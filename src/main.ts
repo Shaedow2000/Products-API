@@ -5,6 +5,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import 'dotenv/config';
 
+import { connectDB } from './DataBase/db.ts';
+
 // Main app/Server
 const app: Express = express();
 
@@ -17,5 +19,7 @@ const PORT: number = Number( process.env.PORT ) || 1111;
 
 // Start Server
 app.listen( PORT, (): void => {
-  console.log( `=!= Server started on http://localhost:${ PORT } =!=` )
+  console.log( `=!= Server started on http://localhost:${ PORT } =!=` );
+
+  connectDB()
 } );
