@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { ProductModel } from "../Model/product.ts";
 import { response } from "../Helpers/methods.ts";
 
-const GETAll = async ( res: Response ): Promise< Response > => {
+const GETAll = async ( _req: Request, res: Response ): Promise< Response > => {
   const data: object = await ProductModel.find( {}, { '__v': false } );
 
   console.log( `[ GET ]|=> Fetched all data;` );
@@ -10,7 +10,9 @@ const GETAll = async ( res: Response ): Promise< Response > => {
   return res.status( 200 ).json( response( 200, 'GET', { 'products': data } ) );
 }
 
-const GET = async ( res: Response, title: string ): Promise< Response > => {
+const GET = async ( req: Request, res: Response ): Promise< Response > => {
+  const title: string = req.params.title.toString();
+
   const data = await ProductModel.find( { title }, { '__v': false } );
 
   let code: number;
@@ -28,7 +30,9 @@ const GET = async ( res: Response, title: string ): Promise< Response > => {
   return res.status( code ).json( response( code, 'GET', { 'product': data } ) );
 }
 
-const DELETE = async ( res: Response, title: string ): Promise< Response > => {
+const DELETE = async ( req: Request, res: Response ): Promise< Response > => {
+  const title: string = req.params.title.toString();
+
   const deleted = await ProductModel.deleteOne( { title } );
 
   let code: number;
@@ -62,7 +66,10 @@ const POST = async ( req: Request, res: Response ): Promise< Response > => {
   } 
 }
 
-const PATCH = async ( res: Response, title: string, data: object ): Promise< Response > => {
+const PATCH = async ( req: Request, res: Response ): Promise< Response > => {
+  const title: string = req.params.title.toString();
+  const data = req.body;
+  
   const _updatedProduct = await ProductModel.updateOne( { title }, { $set: data } );
   const prod = await ProductModel.find( { title }, { '__v': false } );
 
