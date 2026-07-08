@@ -2,7 +2,7 @@
   "name": "products-api",
   "version": "1.0.0",
   "description": "Simple Type safe products api.",
-  "main": "index.js",
+  "main": "./dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/main.ts",
